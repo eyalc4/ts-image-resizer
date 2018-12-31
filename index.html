@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script language="JavaScript" src="ImageResizer.js"></script>
+</head>
+<body>
+<div id="app">
+    <h1>
+        Resizing image with JavaScript / TypeScript by using Canvas
+    </h1>
+    <strong>Demonstration of the diffrent methods and process with easy to understand code</strong>
+    <br/>
+
+    <h4>
+        Resizing image have two main steps:
+    </h4>
+    <ul style="text-align: left;">
+        <li>
+            Resizing exist image
+        </li>
+        <li>
+            Producing new image
+        </li>
+    </ul>
+
+    <p align="left">
+        This guide is dealing mainly the first step, the second step, is the same for all the methods:<br/>
+    <ul style="text-align: left;">
+        <li>
+            You have a canvas with the dimensions of the target image
+        </li>
+        <li>
+            you draw the image on it in the exact size of the canvas
+        </li>
+        <li>
+            use a method to output base64 image.
+            <br/>
+            <code>let resizedBase64image = outputCanvas.toDataURL('image/jpeg', 0.85);</code>
+        </li>
+    </ul>
+    <br/>
+    </p>
+    <h2>
+        Original Image
+    </h2>
+    <a href="https://2012in2012.info/wp-content/uploads/2018/03/free-nature-landscape-images-12-n.jpg">
+        <img src="https://2012in2012.info/wp-content/uploads/2018/03/free-nature-landscape-images-12-n.jpg" width="100px" height="100px">
+    </a>
+    <a href="https://2012in2012.info/wp-content/uploads/2018/03/free-nature-landscape-images-12-n.jpg">
+        <br/>
+        https://2012in2012.info/wp-content/uploads/2018/03/free-nature-landscape-images-12-n.jpg
+    </a>
+
+    <h2>
+        Method 1 - Step by step resize, diffrent canvas for each resize step
+    </h2>
+    Canvas 1 - Original full image 12M pixel
+    <br/>
+    <canvas id="canvas1" width="1024px" height="1024px">
+    </canvas>
+    <br/>
+
+    Canvas 2 - 1st 50% resize, total resize 0.5
+    <br/>
+    <canvas id="canvas2" width="1024px" height="1024px">
+    </canvas>
+    <br/><br/>
+
+    Canvas3 - 2nd 50% resize, total resize 0.25
+    <br/>
+    <canvas id="canvas3" width="1024px" height="1024px">
+    </canvas>
+    <br/><br/>
+
+    Canvas4 - 3rd 50% resize, total resize 0.125
+    <br/>
+    <canvas id="canvas4" width="1024px" height="1024px">
+    </canvas>
+
+    <br/>
+    <h2>
+        Method 2 - Direct resize from original to target, using single canvas, and one resizing step</h2>
+    <p align="left">
+        This method will result in aliased image
+        in case the source image is much bigger then the target image dimensions.
+        If the original images aren't that big compared to the target images, or you dont mind having some aliases, u may use this method which is much simpler.
+    </p>
+    <br/>
+    <canvas id="direct" width="1024px" height="1024px">
+    </canvas>
+    <br/>
+
+    <h2>
+        Method 3 - Multiple resizing steps, using a loop on the same canvas
+    </h2>
+    <p align="left">
+        This method re-use a single canvas to do the resizes on it, each time the resized image is painted on the top of the exist bigger image, in the final step, we just "copy" the smallest image area from it, to the target canvas, which we produce the final image from.
+    </p>
+    <br/>
+    <canvas id="loopcanvas" width="1024px" height="1024px">
+    </canvas>
+</div>
+</body>
+</html>
