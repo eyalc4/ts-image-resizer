@@ -5,7 +5,7 @@ export class ImageTools {
     }
 
     ResizeImage(base64image: string, width: number = 1080, height: number = 1080) {
-        var img = new Image();
+        let img = new Image();
         img.src = base64image;
 
         img.onload = () => {
@@ -25,8 +25,8 @@ export class ImageTools {
                     height = Math.floor(width * (img.height / img.width));
                 }
 
-                var resizingCanvas: HTMLCanvasElement = document.createElement('canvas');
-                var resizingCanvasContext = resizingCanvas.getContext("2d");
+                let resizingCanvas: HTMLCanvasElement = document.createElement('canvas');
+                let resizingCanvasContext = resizingCanvas.getContext("2d");
 
                 // Start with original image size
                 resizingCanvas.width = img.width;
@@ -36,12 +36,12 @@ export class ImageTools {
                 // Draw the original image on the (temp) resizing canvas
                 resizingCanvasContext.drawImage(img, 0, 0, resizingCanvas.width, resizingCanvas.height);
 
-                var curImageDimensions = {
+                let curImageDimensions = {
                     width: Math.floor(img.width),
                     height: Math.floor(img.height)
                 };
 
-                var halfImageDimensions = {
+                let halfImageDimensions = {
                     width: null,
                     height: null
                 };
@@ -63,8 +63,8 @@ export class ImageTools {
 
                 // Now do final resize for the resizingCanvas to meet the dimension requirments
                 // directly to the output canvas, that will output the final image
-                var outputCanvas: HTMLCanvasElement = document.createElement('canvas');
-                var outputCanvasContext = outputCanvas.getContext("2d");
+                let outputCanvas: HTMLCanvasElement = document.createElement('canvas');
+                let outputCanvasContext = outputCanvas.getContext("2d");
 
                 outputCanvas.width = width;
                 outputCanvas.height = height;
